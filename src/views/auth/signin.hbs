@@ -1,0 +1,41 @@
+<div class="container-fluid m-0 p-0 h-100">
+    <div class="row m-0 p-0 h-100">
+        <div class="container p-4 my-auto">
+            <div class="row">
+                <div class="col-md-8 col-lg-5 mx-auto">
+                    
+                    
+                    <div class="card shadow border-0 text-center mb-4">
+                        <div class="card-body pb-2">
+                            <h5 class="pb-2">Inicia sesión</h5>
+                            <form action="/signin" method="POST">
+                                <div class="form-group">
+                                    <input type="email" maxlength="50" name="username" autofocus required placeholder="Correo electrónico" class="form-control">
+                                </div>
+                                <div class="form-group text-left">
+                                    <input type="password" maxlength="50"  id="myInput" name="password" required placeholder="Contraseña" class="form-control">
+                                    <small class="text-muted ml-1"> <a href="#">Olvidé mi contraseña</a></small>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check text-left">
+                                    <input class="form-check-input" type="checkbox" onclick="ver()">
+                                    <label class="form-check-label">
+                                        Mostrar contraseña
+                                    </label>
+                                    </div>
+                                </div>
+                                <div class="form-group text-left">
+                                    <button class="btn btn-info px-4">
+                                        Entrar
+                                    </button>
+                                </div>
+                            </form>
+                            {{> message}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

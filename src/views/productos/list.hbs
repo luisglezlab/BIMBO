@@ -1,0 +1,89 @@
+<div class="container p-4">
+    <div class="row">
+        
+        <div class="col-md-12 mx-auto">
+            {{> message}}
+            <div class="card text-center p-4">
+                <div class="card-body">
+                    <h3>Productos en venta</h3>     
+                        {{#if productos}}   
+                    <a href="/productos/add" class="btn btn-info mb-3">
+                        Agregar un nuevo producto
+                    </a>
+                    <p>Haz registrado {{total.total}} productos</p>
+                    <p class="text-muted">Estos son los productos que has registrado:</p>               
+                </div>
+                <div class="card-body overflow-x"> 
+                        
+                     <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each productos}}
+                                    <tr>
+                                        <td class="py-3 align-middle" title="Cambiar imagen"><a href="/productos/edit_imagen/{{id_producto}}"><img src="/img/productos/{{imagen}}" height="50px"></a></td>
+                                        <td class="py-3 align-middle">{{nombre_producto}}</td>
+                                        <td class="py-3 align-middle text-left"><small class="text-muted">{{description}}</small></td>
+                                        <td class="py-3 align-middle"><small class="text-muted mr-1">$</small>{{costo}}<small class="text-muted ml-1">MXN</small></td>
+                                        <script>
+                                            if ({{stock}} == "0"){
+                                                document.write('<td class="py-3 align-middle text-danger">{{stock}}</td>');
+                                            }else{
+                                                document.write('<td class="py-3 align-middle">{{stock}}</td>');
+                                            }
+                                        </script>
+                                        <td class="py-3 align-middle">
+                                            <a href="/productos/edit/{{id_producto}}" class="btn btn-info btn-block">Editar</a>
+                                        </td>
+                                        <td class="py-3 align-middle">
+                                            <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#exampleModal{{id_producto}}">
+                                            Eliminar
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{id_producto}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content bg-info">
+                                                <div class="modal-header text-light">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar producto</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body bg-light text-center">
+                                                    <p>¿Estas de seguro de eliminar este producto?</p>
+                                                    <p class="text-muted">Producto: {{nombre_producto}}</p>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                                                    <a href="/productos/delete/{{id_producto}}" class="btn btn-info">Eliminar</a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                    </tr>    
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                    {{else}}
+                        <p>No hay productos registrados</p>
+                        <a href="/productos/add">¡Agrega uno y comienza a vender!</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

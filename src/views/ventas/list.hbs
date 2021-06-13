@@ -1,0 +1,40 @@
+<div class="container p-4">
+    <div class="row">
+            {{#if venta}}
+            <div class="col-md-12">
+            {{> message}}
+                            
+                <div class="card">
+                <div class="card-header bg-info">
+                    <h5 class="card-title font-weight-bold text-light m-0">
+                        Historial de ventas
+                    </h5>
+                </div>
+                <div class="card-body p-0 overflow-auto" style="max-height: 400px;">
+                     <table class="table table-responsive-xl table-hover">
+                        <tbody>
+                            {{#each venta}}
+                                    <tr>
+                                        <td class="py-3">{{nombre}}</td>
+                                        <td class="py-3">realizó una compra de:  <small class="text-muted mr-1">$</small>{{costo_venta}}<small class="text-muted ml-1">MXN</small></td>
+                                        <td class="py-3">{{timeago created_at}}</td>                                
+                                    </tr>    
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+
+
+            
+            {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>Aún no hay ventas registradas</p>
+                </div>
+            </div>
+            {{/if}}
+    </div>
+</div>

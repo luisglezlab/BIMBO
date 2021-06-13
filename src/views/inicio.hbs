@@ -1,0 +1,103 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            {{> message}}
+            <div class="card text-center p-md-4 py-4">
+                <div class="card-body">
+                    <h3>¡{{user.nombre}}, comienza a comprar ahora!</h3>
+                    <p class="text-muted mx-5">Agrega los productos que más te gusten a tu carrito de compras:</p>
+                    <form action="/inicio" method="get">
+                        <div class="form-row align-items-center">
+                            <div class="col-lg-6 col-12">
+                                <div class="input-group px-3">
+                                    <select class="form-control" required id="inputGroupSelect04" name="orderby">
+                                        <option value="" disabled selected>Ordenar por:</option>
+                                        <option value="A-Z">A-Z</option>
+                                        <option value="Z-A">Z-A</option>
+                                        <option value="Mayor precio">Mayor precio</option>
+                                        <option value="Menor precio">Menor precio</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-info float-left">Ordenar</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-6 col-12 text-lg-right text-center my-3">
+                                <a href="/carrito" class="btn btn-info">
+                                    {{#each cantidad_carrito}}
+                                        <script>
+                                            if(("{{pro_total}}") == ""){
+                                                document.write('Ver mi carrito de compras (0)');
+                                            }else{
+                                                document.write('Ver mi carrito de compras ({{pro_total}})');
+                                            }
+                                        </script>                                    
+                                    {{/each}}
+                                </a>
+
+                            </div>
+                        </div>
+                    </form> 
+                        {{#if productos}}
+                        <p class="text-muted text-lg-left text-center mx-3">Ordenado por: {{order}}</p>    
+                        {{#each productos}}
+                        <div class="card d-inline-block m-2 card-tienda rounded-0">
+                            <div class="card-header p-1 rounded-0">
+                                <table style="min-height:70px; width:100%;">
+                                    <tr>
+                                        <td class="align-middle">
+                                            <h5 class="card-title m-0">{{nombre_producto}}</h5>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <img src="/img/productos/{{imagen}}" height="150px"><br/>
+                                    <H5 class="mt-3">Costo: $ {{costo}} MXN</H5>
+                                    <table style="min-height:100px; width:100%;">
+                                        <tr>
+                                            <td class="align-middle">
+                                                <small class="card-title m-0 text-muted">{{description}}</small>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <form action="/carrito/add" method="post">
+                                        <div class="form-group">
+                                            <p>¿Cuantos quieres?</p>
+                                            <script>
+                                                if ({{stock}} == "0"){
+                                                    document.write('<input type="number" max="{{stock}}" disabled min="0" value="0" step="1" name="cantidad" class="form-control text-center">');                                            
+                                                    document.write('<small class="text-danger">Producto agotado</small>');
+                                                }else{
+                                                    document.write('<input type="number" max="{{stock}}" min="1" value="0" step="1" name="cantidad" class="form-control text-center">'); 
+                                                    document.write('<small class="text-muted">Piezas disponibles: {{stock}}</small>');
+                                                }
+                                            </script>
+                                        </div>
+                                        <input type="hidden" name="id_producto_carrito" value="{{id_producto}}">
+                                        <input type="hidden" name="nombre_producto_carrito" value="{{nombre_producto}}">
+                                        <input type="hidden" name="costo" value="{{costo}}">
+                                        <script>
+                                            if ({{stock}} == "0"){
+                                                document.write('<button class="btn btn-info btn-block mb-3" disabled>Añadir al carrito</button>');
+                                            }else{
+                                                document.write('<button class="btn btn-info btn-block mb-3">Añadir al carrito</button>');
+                                            }
+                                        </script>
+                                    </form>
+                                </li>
+                            </ul>                        
+                        </div>
+                        {{/each}}
+                        {{else}}
+                        <p>Los sentimos, por el momento no hay productos en venta :(</p>
+                        {{/if}}
+                       
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="container p-4">
+    <div class="row">
+            {{#if users}}
+            <div class="col-md-12">
+            {{> message}}
+                            
+                <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title font-weight-bold m-0">
+                        Cuentas registradas
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                     <table class="table table-responsive-xl table-hover">
+                        <tbody>
+                            {{#each users}}
+                                    <tr>
+                                        <td class="py-3"><a href="/actividad/{{id}}">{{nombre}} {{apellidos}}</a></td>
+                                        <td class="py-3">{{username}}</td>
+                                        <td class="py-3">{{reportado}}</td>
+                                        <td>
+                                            <a href="/cuentas/bloquear/{{id}}" class="btn btn-danger btn-block">Bloquear</a>
+                                        </td>
+                                        <td>
+                                            <a href="/cuentas/activar/{{id}}" class="btn btn-success btn-block">Activar</a>
+                                        </td>
+                                        <td>
+                                            <a href="/cuentas/editar/{{id}}" class="btn btn-warning btn-block">Editar</a>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#exampleModal{{id}}">
+                                            Eliminar
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar cuenta</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <p>¿Estas de seguro de eliminar esta cuenta?</p>
+                                                    <p class="text-muted">Usuario: {{nombre}} {{apellidos}}</p>
+                                                    <p class="text-muted">Correo: {{username}}</p>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <a href="/cuentas/delete/{{id}}" class="btn btn-danger">Eliminar</a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                    </tr>    
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+
+
+            
+            {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay cuentas registradas</p>
+                </div>
+            </div>
+            {{/if}}
+    </div>
+</div>

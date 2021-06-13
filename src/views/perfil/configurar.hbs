@@ -1,0 +1,37 @@
+<div class="container p-4 my-auto">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5>Editar tu cuenta</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/perfil/editar" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="nombre" value="{{user.nombre}}" required title="Utiliza solo letras." pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+" maxlength="50" placeholder="Nombres(s)" class="form-control" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="apellidos" value="{{user.apellidos}}" title="Utiliza solo letras." pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+" maxlength="50"  required placeholder="Apellidos" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="username" value="{{user.username}}" maxlength="50" required placeholder="correo" class="form-control">
+                        </div>
+                        <div class="form-group text-left">
+                            <input type="password" minlength="4" maxlength="50"  name="password" required  title="Utiliza solo letras (No caracteres especiales ni números)." pattern="[A-Za-zñÑ ]+" placeholder="Contraseña" class="form-control">
+                            <small class="text-muted ml-1">Usa sólo letras (No acentos, caracteres especiales ni números)</small>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-info">
+                                Actualizar
+                            </button>
+                            <a href="/" class="btn btn-secondary">
+                                Volver a inicio
+                            </a>
+                        </div>
+                    </form>
+                    {{> message}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

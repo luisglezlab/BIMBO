@@ -1,0 +1,50 @@
+<div class="container p-4">
+    <div class="row">
+            {{#if actividad}}
+            <div class="col-md-12">
+            {{> message}}
+                            
+                <div class="card">
+                <div class="card-header bg-info">
+                    <h5 class="card-title font-weight-bold text-light m-0">
+                        Registro de actividad
+                    </h5>
+                </div>
+                <div class="card-body p-0 overflow-auto" style="max-height: 400px;">
+                     <table class="table table-responsive-xl table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Actividad realizada</th>
+                            <th scope="col">Realizado hace</th>
+                            <th scope="col">IP del cliente</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each actividad}}
+                                    <tr>
+                                        <td class="py-3"> <a href="/actividad/{{id}}">{{nombre}} ({{username}})</a></td>
+                                        <td class="py-3">{{actividad_realizada}}</td>
+                                        <td class="py-3">{{timeago tiempo}}</td>  
+                                        <td class="py-3">{{ip}}</td>                                        
+                                    </tr>    
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+
+
+            
+            {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay actividad registrada</p>
+                    <a href="/actividad">Actualizar</a>
+                </div>
+            </div>
+            {{/if}}
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-center mb-4">Cambiar imagen de {{producto.nombre_producto}}</h5>
+
+                    <form action="/productos/edit_imagen/{{producto.id_producto}}" method="POST">
+                        
+                        <div class="form-group">
+                            <input type="file" name="imagen" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-success">
+                                Cambiar imagen
+                            </button>
+                            <a href="/productos" class="btn btn-secondary">
+                                Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

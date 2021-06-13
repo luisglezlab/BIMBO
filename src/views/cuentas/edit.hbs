@@ -1,0 +1,36 @@
+<div class="container p-4 my-auto">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5>Editar cuenta de {{usere.nombre}} {{usere.apellidos}}</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/cuentas/editar/{{usere.id}}" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="nombre" value="{{usere.nombre}}" required  maxlength="50" placeholder="Nombres(s)" class="form-control" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="apellidos" value="{{usere.apellidos}}" maxlength="50"  required placeholder="Apellidos" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="username" value="{{usere.username}}" maxlength="50" required placeholder="correo" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="tipo_usuario" value="{{usere.tipo_usuario}}"  maxlength="50" required placeholder="tipo_usuario" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-warning">
+                                Actualizar
+                            </button>
+                            <a href="/cuentas" class="btn btn-secondary">
+                                Regresar
+                            </a>
+                        </div>
+                    </form>
+                    {{> message}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

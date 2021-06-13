@@ -1,0 +1,95 @@
+
+{{#if user}}
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-info">
+  <div class="container">
+  <a class="navbar-brand" href="/">
+    <img src="/img/logo.png" width="90" height="45" class="d-inline-block align-top" alt="">
+  </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+
+        {{#if cliente}}
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            Tienda en línea
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/carrito/">
+          
+            {{#each cantidad_carrito}}
+                <script>
+                    if(("{{pro_total}}") == ""){
+                        document.write('Carrito (0)');
+                    }else{
+                        document.write('Carrito ({{pro_total}})');
+                    }
+                </script>                                    
+            {{/each}}
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/compras/">
+            Historial de compras
+          </a>
+        </li>
+        {{/if}}
+        {{#if admin}}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/productos/">
+            Productos en venta
+          </a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/ventas/">
+            Historial de ventas
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/cuentas/">
+            Clientes
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/actividad/">
+            Registro de Actividad
+          </a>
+        </li>
+        {{/if}}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{user.nombre}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/perfil/editar">Editar cuenta</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+          </div>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+{{else}}
+
+<nav class="navbar navbar-expand-lg navbar-light  fixed-top bg-info">
+  <div class="container">
+  <a class="navbar-brand" href="/">
+    <img src="/img/logo.png" width="90" height="45" class="d-inline-block align-top" alt="">
+  </a>
+  <a href="/signin"><button class="btn btn-outline-light" type="button">Inicia sesión</button></a>
+  </div>
+</nav>
+
+{{/if}}
+        
